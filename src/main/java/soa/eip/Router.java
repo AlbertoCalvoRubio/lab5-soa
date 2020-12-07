@@ -1,6 +1,8 @@
 package soa.eip;
 
+import org.apache.camel.CamelContext;
 import org.apache.camel.builder.RouteBuilder;
+import org.apache.camel.impl.DefaultCamelContext;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -10,10 +12,12 @@ public class Router extends RouteBuilder {
 
   @Override
   public void configure() {
-    from(DIRECT_URI)
-      .log("Body contains \"${body}\"")
-      .log("Searching twitter for \"${body}\"!")
-      .toD("twitter-search:${body}")
-      .log("Body now contains the response from twitter:\n${body}");
+    from("rest:get:search")
+        .setBody(exchange -> exchange.getIn().getHeader("q"))
+        .removeHeader("q")
+        .log("Body contains \"${body}\"")
+        .log("Searching twitter for \"${body}\"!")
+        .toD("twitter-search:${body}")
+        .log("Body now contains the response from twitter:\n${body}");
   }
 }

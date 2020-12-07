@@ -25,11 +25,4 @@ public class SearchController {
   public String index() {
     return "index";
   }
-
-
-  @RequestMapping(value = "/search")
-  @ResponseBody
-  public Object search(@RequestParam("q") String q) {
-    return producerTemplate.requestBody(DIRECT_URI, q);
-  }
 }
