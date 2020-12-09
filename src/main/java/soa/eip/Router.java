@@ -18,6 +18,9 @@ public class Router extends RouteBuilder {
         .log("Body contains \"${body}\"")
         .log("Searching twitter for \"${body}\"!")
         .toD("twitter-search:${body}")
+        // Transform Twitter's POJO to Json
+        .marshal()
+        .json()
         .log("Body now contains the response from twitter:\n${body}");
   }
 }

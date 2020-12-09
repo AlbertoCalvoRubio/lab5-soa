@@ -19,6 +19,7 @@ dependencies {
     compile("org.webjars.bowergithub.twbs:bootstrap:3.3.7")
     compile("org.webjars.bowergithub.janl:mustache.js:3.0.1")
     compile('org.apache.camel.springboot:camel-servlet-starter:3.6.0')
+    compile("org.apache.camel:camel-jackson:3.6.0")
 
 }
 
